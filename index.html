@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF-Prüfer — Rechtschreib- und Grammatikprüfung für PDFs</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo"><span class="mark">P</span> PDF-Prüfer</div>
+
+    <div class="toolbar">
+      <button id="openBtn" class="btn primary" type="button">PDF öffnen</button>
+      <input id="fileInput" type="file" accept="application/pdf" hidden>
+
+      <label class="field">
+        Sprache
+        <select id="langSelect" class="select">
+          <option value="de-DE" selected>Deutsch (DE)</option>
+          <option value="de-AT">Deutsch (AT)</option>
+          <option value="de-CH">Deutsch (CH)</option>
+        </select>
+      </label>
+
+      <button id="checkBtn" class="btn" type="button" disabled>Prüfen</button>
+
+      <label class="field">
+        Filter
+        <select id="filterSelect" class="select" disabled>
+          <option value="all">Alle Fehler</option>
+          <option value="misspelling">Rechtschreibung</option>
+          <option value="grammar">Grammatik</option>
+          <option value="typographical">Typografie</option>
+          <option value="style">Stil</option>
+          <option value="other">Sonstige</option>
+        </select>
+      </label>
+    </div>
+
+    <span class="spacer"></span>
+
+    <div class="stat-pills">
+      <span class="pill" id="pillPages"><span class="dot" style="background:#6b7280"></span> <span>0 Seiten</span></span>
+      <span class="pill" id="pillErrors"><span class="dot" style="background:#e5484d"></span> <span>0 Fundstellen</span></span>
+    </div>
+  </header>
+
+  <div id="statusBar" class="status" hidden></div>
+
+  <main>
+    <section id="viewer" class="viewer" aria-label="PDF-Ansicht">
+      <div id="pages" class="pages"></div>
+      <div class="placeholder" id="viewerPlaceholder">
+        <p><strong>Kein PDF geöffnet.</strong></p>
+        <p>Auf „PDF öffnen" klicken und ein deutsches PDF-Dokument wählen.
+           Die Datei wird nur im Browser verarbeitet — es findet kein Upload auf einen Server statt.
+           Für die Prüfung wird der reine Text an die LanguageTool-API gesendet.</p>
+      </div>
+    </section>
+
+    <aside id="sidebar" class="sidebar" aria-label="Ergebnisse">
+      <div class="sidebar-head">
+        <h2>Fundstellen</h2>
+        <span id="resultCount" class="muted">—</span>
+      </div>
+      <ol id="results" class="results"></ol>
+      <div id="resultsEmpty" class="results-empty muted">
+        Noch nichts geprüft.
+      </div>
+      <button id="ignoredBar" class="ignored-bar" type="button" hidden></button>
+    </aside>
+  </main>
+
+  <footer>
+    <span class="muted">Verarbeitung im Browser · Prüfung über
+      <a href="https://languagetool.org" target="_blank" rel="noopener">LanguageTool</a></span>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="config.js"></script>
+<script src="lib.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

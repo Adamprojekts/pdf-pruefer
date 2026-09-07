@@ -1,0 +1,11 @@
+# Betriebssystem
+.DS_Store
+Thumbs.db
+
+# Editoren
+.vscode/
+.idea/
+
+# Falls config.js irgendwann einen echten API-Schlüssel enthält,
+# die folgende Zeile einkommentieren und config.example.js pflegen:
+# config.js
